@@ -1,0 +1,1370 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="Parallax — AI-powered satellite disaster intelligence.">
+
+    <meta name="theme-color"
+          content="#050607">
+
+    <title>
+        Parallax | Satellite Disaster Intelligence
+    </title>
+
+    <!-- FAVICON -->
+    <link rel="icon"
+          type="image/svg+xml"
+          href="logo.svg">
+
+    <link rel="stylesheet"
+          href="style.css">
+
+    <!-- LEAFLET -->
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    >
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     LOADING SCREEN
+===================================================== -->
+
+<div id="loader">
+
+    <div class="loader-logo">
+
+        <div class="logo-mark">
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+        </div>
+
+        <div>
+
+            <div class="loader-brand">
+                PARALLAX
+            </div>
+
+            <div class="loader-subtitle">
+                AI-POWERED SATELLITE DISASTER INTELLIGENCE
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="loader-line">
+        <div></div>
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     NAVIGATION
+===================================================== -->
+
+<header class="navbar">
+
+    <a href="#home"
+       class="brand">
+
+        <div class="brand-mark">
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+        </div>
+
+        <div class="brand-text">
+
+            <strong>
+                PARALLAX
+            </strong>
+
+            <small>
+                AI-POWERED SATELLITE DISASTER INTELLIGENCE
+            </small>
+
+        </div>
+
+    </a>
+
+
+    <nav class="nav-links">
+
+        <a href="#home"
+           class="active">
+            HOME
+        </a>
+
+        <a href="#analyze">
+            ANALYZE
+        </a>
+
+        <a href="#dashboard">
+            DASHBOARD
+        </a>
+
+        <a href="#about">
+            ABOUT
+        </a>
+
+    </nav>
+
+
+</header>
+
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main>
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section id="home"
+         class="hero">
+
+    <!-- HERO IMAGE -->
+    <img src="hero.jpg" alt="Satellite imagery" class="hero-bg">
+
+    <div class="hero-overlay"></div>
+
+
+    <div class="hero-content">
+
+        <div class="eyebrow">
+            AI-POWERED SATELLITE DISASTER ANALYSIS
+        </div>
+
+
+        <h1>
+
+            SEE THE CHANGE.
+
+            <br>
+
+            UNDERSTAND THE
+
+            <span>
+                IMPACT.
+            </span>
+
+        </h1>
+
+
+        <p>
+
+            Parallax uses satellite imagery and
+            artificial intelligence to detect,
+            visualize and understand environmental
+            and disaster-related changes.
+
+        </p>
+
+
+        <div class="hero-actions">
+
+            <button
+                class="gold-btn"
+                onclick="scrollToSection('analyze')">
+
+                START NEW ANALYSIS
+
+                <span>
+                    →
+                </span>
+
+            </button>
+
+
+            <button
+                class="outline-btn"
+                onclick="scrollToSection('dashboard')">
+
+                VIEW DEMO
+
+            </button>
+
+        </div>
+
+
+
+        <!-- =================================================
+             HERO DISASTER TYPES
+        ================================================== -->
+
+        <div class="hero-features">
+
+
+            <!-- FLOOD -->
+
+            <div class="mini-card">
+
+                <div class="mini-icon">
+                    🌊
+                </div>
+
+                <div>
+
+                    <strong>
+                        FLOOD
+                    </strong>
+
+                    <small>
+                        SAR-based analysis
+                    </small>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- WILDFIRE -->
+
+            <div class="mini-card">
+
+                <div class="mini-icon">
+                    🔥
+                </div>
+
+                <div>
+
+                    <strong>
+                        WILDFIRE
+                    </strong>
+
+                    <small>
+                        Fire & burn detection
+                    </small>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- VEGETATION -->
+
+            <div class="mini-card">
+
+                <div class="mini-icon">
+                    🌱
+                </div>
+
+                <div>
+
+                    <strong>
+                        VEGETATION
+                    </strong>
+
+                    <small>
+                        Vegetation change analysis
+                    </small>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     ANALYSIS
+===================================================== -->
+
+<section id="analyze"
+         class="analysis-section">
+
+
+    <div class="section-heading">
+
+        <div class="eyebrow">
+            DISASTER INTELLIGENCE
+        </div>
+
+        <h2>
+            EXPLORE SATELLITE CHANGES
+        </h2>
+
+        <p>
+            Select a disaster type, location and
+            dates to analyze satellite imagery.
+        </p>
+
+    </div>
+
+
+
+    <!-- =================================================
+         MAP WORKSPACE
+    ================================================== -->
+
+    <div class="map-workspace">
+
+
+        <!-- MAP -->
+
+        <div class="map-container">
+
+            <div
+                id="parallaxMap"
+                class="parallax-map">
+            </div>
+
+
+            <!-- MAP INSTRUCTION -->
+
+            <div class="map-instruction">
+
+                📍 Click anywhere on the map
+                to select a location
+
+            </div>
+
+
+            <!-- MAP LEGEND -->
+
+            <div class="map-legend">
+
+                <div class="legend-title">
+                    DISASTER LAYERS
+                </div>
+
+                <div>
+                    <span class="legend-dot flood-dot"></span>
+                    Flood
+                </div>
+
+                <div>
+                    <span class="legend-dot vegetation-dot"></span>
+                    Vegetation
+                </div>
+
+                <div>
+                    <span class="legend-dot wildfire-dot"></span>
+                    Wildfire
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             CONTROLS
+        ================================================== -->
+
+        <div class="map-controls">
+
+            <div class="controls-title">
+                ANALYZE LOCATION
+            </div>
+
+
+            <!-- DISASTER TYPE -->
+
+            <label for="disasterType">
+                DISASTER TYPE
+            </label>
+
+            <select id="disasterType">
+                <option value="auto">AUTO DETECT</option>
+                <option value="flood">FLOOD</option>
+                <option value="wildfire">WILDFIRE</option>
+                <option value="vegetation">VEGETATION</option>
+            </select>
+
+
+            <!-- LATITUDE -->
+
+            <label for="latitudeInput">
+                LATITUDE
+            </label>
+
+            <input
+                type="text"
+                id="latitudeInput"
+                placeholder="Enter latitude"
+            >
+
+
+            <!-- LONGITUDE -->
+
+            <label for="longitudeInput">
+                LONGITUDE
+            </label>
+
+            <input
+                type="text"
+                id="longitudeInput"
+                placeholder="Enter longitude"
+            >
+
+
+            <div
+                id="coordinatesDisplay"
+                class="coordinates-display">
+
+                No location selected
+
+            </div>
+
+
+
+            <!-- BEFORE DATE -->
+
+            <label for="beforeDate">
+                BEFORE DATE
+            </label>
+
+            <input
+                type="date"
+                id="beforeDate"
+            >
+
+
+
+            <!-- AFTER DATE -->
+
+            <label for="afterDate">
+                AFTER DATE
+            </label>
+
+            <input
+                type="date"
+                id="afterDate"
+            >
+
+
+
+            <!-- ANALYZE -->
+
+            <button
+                id="mapAnalyzeButton"
+                class="gold-btn map-analyze-button">
+
+                ANALYZE DISASTER
+
+                <span>
+                    →
+                </span>
+
+            </button>
+
+
+
+            <!-- STATUS -->
+
+            <div
+                id="mapStatus"
+                class="map-status">
+
+                Select a disaster type,
+                location and two dates.
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =================================================
+         BEFORE / AFTER
+    ================================================== -->
+
+    <div
+        id="parallaxSlider"
+        class="parallax-slider-section"
+        style="display:none;"
+    >
+
+        <div class="slider-heading">
+
+            <span>
+                SATELLITE COMPARISON
+            </span>
+
+            <h2>
+                BEFORE ↔ AFTER
+            </h2>
+
+            <p id="sliderDescription">
+                Compare satellite imagery
+                before and after the event.
+            </p>
+
+        </div>
+
+
+        <div
+            class="before-after-slider"
+            id="beforeAfterSlider"
+        >
+
+
+            <img
+                src="hero.jpg"
+                class="after-image"
+                id="afterSatelliteImage"
+                alt="After satellite image"
+            >
+
+
+            <div
+                class="before-image-wrapper"
+                id="beforeImageWrapper">
+
+                <img
+                    src="hero.jpg"
+                    class="before-image"
+                    id="beforeSatelliteImage"
+                    alt="Before satellite image"
+                >
+
+            </div>
+
+
+            <div
+                class="slider-handle"
+                id="sliderHandle">
+
+                <div class="slider-line"></div>
+
+                <div class="slider-circle">
+                    ◀ ▶
+                </div>
+
+            </div>
+
+
+            <div class="slider-label before-label">
+                BEFORE
+            </div>
+
+            <div class="slider-label after-label">
+                AFTER
+            </div>
+
+        </div>
+
+
+        <button
+            id="showChangesButton"
+            class="show-changes-button">
+
+            🔴 SHOW AI DETECTED CHANGES
+
+        </button>
+
+
+        <div
+            id="aiChangeStatus"
+            class="ai-change-status">
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     DASHBOARD
+===================================================== -->
+
+<section id="dashboard"
+         class="dashboard-section">
+
+
+    <div class="dashboard-header">
+
+        <div>
+
+            <div class="eyebrow">
+                DISASTER ANALYSIS RESULTS
+            </div>
+
+            <h2>
+                CHANGE INTELLIGENCE
+            </h2>
+
+        </div>
+
+
+        <button id="exportReportButton" class="export-btn">
+            ↓ &nbsp; EXPORT REPORT
+        </button>
+
+    </div>
+
+
+
+    <!-- =================================================
+         STATISTICS
+    ================================================== -->
+
+    <div class="stats-grid">
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                ◫
+            </div>
+
+            <div>
+
+                <small>
+                    AFFECTED AREA
+                </small>
+
+                <strong id="affectedArea">
+                    65.64 km²
+                </strong>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                ◈
+            </div>
+
+            <div>
+
+                <small>
+                    DETECTED CHANGE
+                </small>
+
+                <strong
+                    class="red-text"
+                    id="changeArea">
+
+                    12.48 km²
+
+                </strong>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                %
+            </div>
+
+            <div>
+
+                <small>
+                    CHANGE %
+                </small>
+
+                <strong id="changePercentage">
+                    19.02%
+                </strong>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                ✓
+            </div>
+
+            <div>
+
+                <small>
+                    CONFIDENCE
+                </small>
+
+                <strong id="confidence">
+                    94.7%
+                </strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =================================================
+         DISASTER RESULT BANNER
+    ================================================== -->
+
+    <div class="disaster-result-banner">
+
+        <div
+            class="result-disaster-icon"
+            id="resultDisasterIcon">
+
+            🌊
+
+        </div>
+
+        <div>
+
+            <small>
+                DETECTED EVENT
+            </small>
+
+            <strong id="resultDisasterName">
+                FLOOD
+            </strong>
+
+            <p id="resultDisasterDescription">
+                Water-covered regions detected
+                in the selected area.
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =================================================
+         IMAGE COMPARISON
+    ================================================== -->
+
+    <div class="comparison-panel">
+
+
+        <div class="comparison-tabs">
+
+            <button
+                class="comparison-tab active"
+                data-view="before">
+
+                BEFORE
+
+            </button>
+
+
+            <button
+                class="comparison-tab"
+                data-view="after">
+
+                AFTER
+
+            </button>
+
+
+            <button
+                class="comparison-tab"
+                data-view="change">
+
+                CHANGE MAP
+
+            </button>
+
+        </div>
+
+
+
+        <div class="comparison-image-container">
+
+
+            <img
+                id="dashboardImage"
+                src="hero.jpg"
+                alt="Satellite analysis visualization"
+            >
+
+
+            <div class="change-overlay">
+            </div>
+
+
+            <div
+                class="comparison-label"
+                id="comparisonLabel">
+
+                BEFORE
+
+            </div>
+
+        </div>
+
+
+
+        <div class="map-controls">
+
+            <button>⌕</button>
+            <button>−</button>
+            <button>+</button>
+            <button>◈</button>
+
+        </div>
+
+
+
+        <div class="legend">
+
+            <span>
+
+                <i class="legend-green"></i>
+
+                No Change
+
+            </span>
+
+
+            <span>
+
+                <i class="legend-red"></i>
+
+                Change Detected
+
+            </span>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =================================================
+         ANALYSIS CARDS
+    ================================================== -->
+
+    <div class="analysis-grid">
+
+
+        <div class="result-card">
+
+            <div class="card-title">
+                CHANGE DISTRIBUTION
+            </div>
+
+
+            <div class="distribution">
+
+                <div class="donut">
+
+                    <div>
+
+                        <strong id="donutValue">
+                            12.48
+                        </strong>
+
+                        <small>
+                            km²
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <div class="distribution-list">
+
+                    <div>
+
+                        <i class="dot high"></i>
+
+                        <span>
+                            High Change
+                        </span>
+
+                        <strong>
+                            49.8%
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <i class="dot medium"></i>
+
+                        <span>
+                            Moderate
+                        </span>
+
+                        <strong>
+                            33.1%
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <i class="dot low"></i>
+
+                        <span>
+                            Low Change
+                        </span>
+
+                        <strong>
+                            17.1%
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- IMPACT -->
+
+        <div class="result-card impact-card">
+
+            <div class="card-title">
+                POTENTIAL IMPACT
+            </div>
+
+
+            <div
+                class="impact-level"
+                id="impactLevel">
+
+                HIGH
+
+            </div>
+
+
+            <div
+                class="impact-icon"
+                id="impactIcon">
+
+                ⚠
+
+            </div>
+
+
+            <p id="impactDescription">
+
+                Significant changes detected
+                across the selected area.
+                Further inspection is recommended.
+
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =================================================
+         CHANGE CATEGORIES
+    ================================================== -->
+
+    <div class="result-card categories-card">
+
+        <div class="card-title">
+            DETECTED CHANGE TYPES
+        </div>
+
+
+        <div class="categories">
+
+
+            <!-- FLOOD -->
+
+            <div>
+
+                <span>
+                    🌊
+                </span>
+
+                <strong>
+                    Flood
+                </strong>
+
+                <small id="floodPercentage">
+                    38.2%
+                </small>
+
+            </div>
+
+
+
+            <!-- WILDFIRE -->
+
+            <div>
+
+                <span>
+                    🔥
+                </span>
+
+                <strong>
+                    Wildfire
+                </strong>
+
+                <small id="wildfirePercentage">
+                    18.1%
+                </small>
+
+            </div>
+
+
+
+            <!-- VEGETATION -->
+
+            <div>
+
+                <span>
+                    🌱
+                </span>
+
+                <strong>
+                    Vegetation
+                </strong>
+
+                <small id="buildingPercentage">
+                    19.2%
+                </small>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     TRUST
+===================================================== -->
+
+<section class="trust-section">
+
+    <div>
+
+        <span>◈</span>
+
+        <strong>
+            SATELLITE POWERED
+        </strong>
+
+        <small>
+            Multi-source Earth observation data.
+        </small>
+
+    </div>
+
+
+    <div>
+
+        <span>◷</span>
+
+        <strong>
+            RAPID ANALYSIS
+        </strong>
+
+        <small>
+            Detect changes efficiently.
+        </small>
+
+    </div>
+
+
+    <div>
+
+        <span>◎</span>
+
+        <strong>
+            ASIA COVERAGE
+        </strong>
+
+        <small>
+            Explore disaster events across Asia.
+        </small>
+
+    </div>
+
+
+    <div>
+
+        <span>⌘</span>
+
+        <strong>
+            AI-READY
+        </strong>
+
+        <small>
+            Designed for intelligent disaster analysis.
+        </small>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     ABOUT
+===================================================== -->
+
+<section id="about"
+         class="about-section">
+
+    <div class="eyebrow">
+        HOW PARALLAX WORKS
+    </div>
+
+
+    <h2>
+        FROM IMAGERY TO INTELLIGENCE.
+    </h2>
+
+
+    <p>
+        Parallax combines satellite imagery,
+        computer vision and disaster-specific
+        analysis to identify significant changes
+        across affected regions.
+    </p>
+
+
+    <div class="process">
+
+
+        <div>
+
+            <span>01</span>
+
+            <strong>
+                SELECT
+            </strong>
+
+            <small>
+                Choose a disaster type,
+                location and dates.
+            </small>
+
+        </div>
+
+
+        <div>
+
+            <span>02</span>
+
+            <strong>
+                RETRIEVE
+            </strong>
+
+            <small>
+                Satellite imagery is collected
+                for the selected region.
+            </small>
+
+        </div>
+
+
+        <div>
+
+            <span>03</span>
+
+            <strong>
+                DETECT
+            </strong>
+
+            <small>
+                AI models identify disaster-related
+                changes.
+            </small>
+
+        </div>
+
+
+        <div>
+
+            <span>04</span>
+
+            <strong>
+                UNDERSTAND
+            </strong>
+
+            <small>
+                View affected areas,
+                statistics and impact insights.
+            </small>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+    <div class="footer-main">
+
+
+        <div class="footer-brand">
+
+            <div class="brand-mark large">
+
+                <span></span>
+                <span></span>
+                <span></span>
+
+            </div>
+
+
+            <div>
+
+                <strong>
+                    PARALLAX
+                </strong>
+
+                <small>
+                    AI-POWERED SATELLITE DISASTER INTELLIGENCE
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <strong>
+                PRODUCT
+            </strong>
+
+            <a href="#analyze">
+                Analyze
+            </a>
+
+            <a href="#dashboard">
+                Dashboard
+            </a>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <strong>
+                COMPANY
+            </strong>
+
+            <a href="#about">
+                About
+            </a>
+
+            <a href="#">
+                Contact
+            </a>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <strong>
+                SUPPORT
+            </strong>
+
+            <a href="#">
+                Documentation
+            </a>
+
+            <a href="#">
+                Help Center
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <span>
+            © 2026 Parallax. All rights reserved.
+        </span>
+
+        <span>
+            AI • SATELLITE • DISASTER INTELLIGENCE
+        </span>
+
+    </div>
+
+</footer>
+
+
+</main>
+
+
+
+<!-- =====================================================
+     LEAFLET
+===================================================== -->
+
+<script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
+</script>
+
+
+<script src="script.js"></script>
+
+
+</body>
+
+</html>
