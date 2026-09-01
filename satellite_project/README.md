@@ -8,10 +8,7 @@ satellite imagery from public Earth-observation services, and
 change-detection logic. It supports flood, wildfire, vegetation-change,
 and automatic detection modes.
 
-> **Current model status:** The project contains an integration adapter
-> for the team's trained LEVIR-CD256 model. If the trained model is not
-> connected yet, the backend falls back to disaster-specific spectral
-> analysis using Sentinel-2 imagery.
+Video Pitch : https://drive.google.com/file/d/1UoPGKo0Zp0mNBFXE1ISiQBmV0lTH7hyZ/view?usp=sharing
 
 ## Features
 
